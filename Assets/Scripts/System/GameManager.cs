@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     [Range(1f, 60f)]
     [Tooltip("1手あたりの持ち時間")]
     private float _allottedTime = 1f;
+    [SerializeField]
+    private bool _isPause = false;
 
     private float _timer = 0f;
     private Turn _currentTurn = Turn.White;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (_isPause) return;
+
         _timer -= Time.deltaTime;
         if (_timer <= 0f)
         {

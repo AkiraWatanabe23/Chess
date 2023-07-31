@@ -16,6 +16,8 @@ namespace Constants
             {  4,  2,  3,  5,  6,  3,  2,  4 },
         };
 
+        public const int BoardSize = 8;
+
         public const int Left = 1;
         public const int UpperLeft = 2;
         public const int Upper = 4;
