@@ -7,6 +7,11 @@ public class PieceState : MonoBehaviour
     private PieceType _pieceType = PieceType.Pawn;
 
     private IPiece _movement = default;
+    private int _indexRow = 0;
+    private int _indexColumn = 0;
+
+    public int IndexRow => _indexRow;
+    public int IndexColumn => _indexColumn;
 
     private void Start()
     {
@@ -20,5 +25,13 @@ public class PieceState : MonoBehaviour
             PieceType.King => new King(),
             _ => null
         };
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            var dir = _movement.SearchSquare(_indexRow, _indexColumn);
+        }
     }
 }
