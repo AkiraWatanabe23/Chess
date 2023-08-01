@@ -1,5 +1,4 @@
 ﻿using Constants;
-using System;
 
 public class Rook : IPiece
 {
@@ -15,21 +14,5 @@ public class Rook : IPiece
         if (_systemData.TryGetCell(x + 0, z - 1)) movableDir += Consts.Lower;
 
         return movableDir;
-    }
-
-    public int SearchLoop(Func<bool> func, Action action, Action finishedAction)
-    {
-        int count = 0;
-
-        for (; func(); action())
-        {
-            //if (_board[_checkHol].Array[_checkVer] == 0)
-            //{
-            //    count++;
-            //}
-        }
-        finishedAction();
-
-        return count;
     }
 }

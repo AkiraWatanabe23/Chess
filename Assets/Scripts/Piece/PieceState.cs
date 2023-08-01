@@ -37,8 +37,15 @@ public class PieceState : MonoBehaviour
 
     private void MoveCheck(int dir)
     {
+        int row = _indexRow;
+        int column = _indexColumn;
+
         //以下処理後述
-        if ((dir | Consts.Left) == Consts.Left) { }
+        if ((dir | Consts.Left) == Consts.Left)
+        {
+            //条件は見直す
+            var left = _movement.SearchLoop(() => 0 <= row, () => { row--; }, () => { row = _indexRow; });
+        }
         if ((dir | Consts.UpperLeft) == Consts.UpperLeft) { }
         if ((dir | Consts.Upper) == Consts.Upper) { }
         if ((dir | Consts.UpperRight) == Consts.UpperRight) { }
