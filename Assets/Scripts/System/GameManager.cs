@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
 
     private float _timer = 0f;
     private Turn _currentTurn = Turn.White;
+    private GameSystemData _systemData = new();
 
+    public GameSystemData SystemData => _systemData;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
