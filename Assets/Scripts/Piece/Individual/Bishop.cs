@@ -1,5 +1,4 @@
 ﻿using Constants;
-using System;
 
 public class Bishop : IPiece
 {
@@ -15,10 +14,5 @@ public class Bishop : IPiece
         if (_systemData.TryGetCell(x - 1, z - 1)) movableDir += Consts.LowerLeft;
 
         return movableDir;
-    }
-
-    public int SearchLoop(Func<bool> func, Action action, Action finishedAction)
-    {
-        throw new NotImplementedException();
     }
 }

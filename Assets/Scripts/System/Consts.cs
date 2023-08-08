@@ -58,4 +58,3 @@ namespace Constants
         Black = -1
     }
 }
-
