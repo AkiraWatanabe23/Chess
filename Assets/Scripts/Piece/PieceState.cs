@@ -31,6 +31,7 @@ public class PieceState : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Return))
         {
+            //駒を選ぶ -> マスを選ぶ
             var dir = _movement.SearchSquare(_indexRow, _indexColumn);
         }
     }

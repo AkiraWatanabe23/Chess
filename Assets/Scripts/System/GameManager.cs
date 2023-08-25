@@ -23,10 +23,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else { Destroy(gameObject); }
     }
 
     private void Start()
@@ -36,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (_isPause) return;
+        if (_isPause) { return; }
 
         _timer -= Time.deltaTime;
         if (_timer <= 0f)

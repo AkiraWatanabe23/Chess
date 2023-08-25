@@ -18,7 +18,6 @@ public class GameSystemData
         {
             return true;
         }
-
         return false;
     }
 }
