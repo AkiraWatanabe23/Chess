@@ -53,52 +53,25 @@ public class DataViewer : MonoBehaviour
 
     private void PieceSetting(int pieceNum, Vector3 pos)
     {
-        GameObject piece = null;
-
-        switch (pieceNum)
+        GameObject piece = pieceNum switch
         {
-            case 1:
-                piece = Instantiate(_pawnWhitePrefab);
-                break;
-            case 2:
-                piece = Instantiate(_knightWhitePrefab);
-                break;
-            case 3:
-                piece = Instantiate(_bishopWhitePrefab);
-                break;
-            case 4:
-                piece = Instantiate(_rookWhitePrefab);
-                break;
-            case 5:
-                piece = Instantiate(_queenWhitePrefab);
-                break;
-            case 6:
-                piece = Instantiate(_kingWhitePrefab);
-                break;
-            case -1:
-                piece = Instantiate(_pawnBlackPrefab);
-                break;
-            case -2:
-                piece = Instantiate(_knightBlackPrefab);
-                break;
-            case -3:
-                piece = Instantiate(_bishopBlackPrefab);
-                break;
-            case -4:
-                piece = Instantiate(_rookBlackPrefab);
-                break;
-            case -5:
-                piece = Instantiate(_queenBlackPrefab);
-                break;
-            case -6:
-                piece = Instantiate(_kingBlackPrefab);
-                break;
-        }
-        piece.transform.position = pos;
+            1 => Instantiate(_pawnWhitePrefab),
+            2 => Instantiate(_knightWhitePrefab),
+            3 => Instantiate(_bishopWhitePrefab),
+            4 => Instantiate(_rookWhitePrefab),
+            5 => Instantiate(_queenWhitePrefab),
+            6 => Instantiate(_kingWhitePrefab),
+            -1 => Instantiate(_pawnBlackPrefab),
+            -2 => Instantiate(_knightBlackPrefab),
+            -3 => Instantiate(_bishopBlackPrefab),
+            -4 => Instantiate(_rookBlackPrefab),
+            -5 => Instantiate(_queenBlackPrefab),
+            -6 => Instantiate(_kingBlackPrefab),
+            _ => null
+        };
+
+        if (piece) { piece.transform.position = pos; }
     }
 
-    public void DisplayBoard()
-    {
-
-    }
+    public void DisplayBoard() { }
 }
