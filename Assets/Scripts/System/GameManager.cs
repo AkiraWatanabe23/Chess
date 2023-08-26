@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Range(1f, 60f)]
-    [Tooltip("1手あたりの持ち時間")]
-    private float _allottedTime = 1f;
     [SerializeField]
     private bool _isPause = false;
 
@@ -13,6 +10,7 @@ public class GameManager : MonoBehaviour
     private Turn _currentTurn = Turn.White;
     private GameSystemData _systemData = new();
 
+    public Turn CurrentTurn => _currentTurn;
     public GameSystemData SystemData => _systemData;
     public static GameManager Instance { get; private set; }
 
@@ -24,11 +22,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else { Destroy(gameObject); }
-    }
-
-    private void Start()
-    {
-        _timer = _allottedTime;
     }
 
     private void Update()
@@ -46,7 +39,5 @@ public class GameManager : MonoBehaviour
     {
         _currentTurn
             = _currentTurn == Turn.White ? Turn.Black : Turn.White;
-
-        _timer = _allottedTime;
     }
 }

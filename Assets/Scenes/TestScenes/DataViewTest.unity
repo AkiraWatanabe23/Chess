@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc09876684e262648ad9fe2734648c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameBoardPrefab: {fileID: 176676017058925912, guid: 258a6ab348dd98943abe4b9014d66431, type: 3}
   _pawnWhitePrefab: {fileID: 4700473134343341921, guid: dd4ca147fff61d944aae35a535a17f76, type: 3}
   _pawnBlackPrefab: {fileID: 6494815675916881384, guid: 34edac67c16162a4b9c246b1f0234eb3, type: 3}
   _knightWhitePrefab: {fileID: 4030811944345568390, guid: eb258c20d3d53c840a351ff31fdff4dd, type: 3}

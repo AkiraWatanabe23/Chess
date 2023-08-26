@@ -5,6 +5,8 @@ public class DataViewer : MonoBehaviour
 {
     #region 駒のPrefab一覧
     [SerializeField]
+    private GameObject _gameBoardPrefab = default;
+    [SerializeField]
     private GameObject _pawnWhitePrefab = default;
     [SerializeField]
     private GameObject _pawnBlackPrefab = default;
@@ -32,11 +34,6 @@ public class DataViewer : MonoBehaviour
 
     private void Start()
     {
-        Init();
-    }
-
-    public void Init()
-    {
         InitializeBoardSetting();
     }
 
@@ -53,6 +50,8 @@ public class DataViewer : MonoBehaviour
 
     private void PieceSetting(int pieceNum, Vector3 pos)
     {
+        Instantiate(_gameBoardPrefab);
+
         GameObject piece = pieceNum switch
         {
             1 => Instantiate(_pawnWhitePrefab),
