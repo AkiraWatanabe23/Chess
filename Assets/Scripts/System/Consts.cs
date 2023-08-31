@@ -29,17 +29,17 @@ namespace Constants
 
         public static readonly Dictionary<SceneNames, string> Scenes = new()
         {
-            [SceneNames.TitleScene] = "Title",
-            [SceneNames.InGameScene] = "InGame",
-            [SceneNames.ResultScene] = "Result",
+            [SceneNames.Title] = "Title",
+            [SceneNames.InGame] = "InGame",
+            [SceneNames.Result] = "Result",
         };
     }
 
     public enum SceneNames
     {
-        TitleScene,
-        InGameScene,
-        ResultScene,
+        Title,
+        InGame,
+        Result,
     }
 
     public enum PieceType

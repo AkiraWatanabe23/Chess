@@ -1,28 +1,23 @@
 ﻿using Constants;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField]
     private bool _isPause = false;
 
     private float _timer = 0f;
     private Turn _currentTurn = Turn.White;
+    private Turn _playerColor = Turn.White;
+    private Turn _enemyColor  = Turn.Black;
     private GameSystemData _systemData = new();
 
     public Turn CurrentTurn => _currentTurn;
+    public Turn PlayerColor => _playerColor;
+    public Turn EnemyColor => _enemyColor;
     public GameSystemData SystemData => _systemData;
-    public static GameManager Instance { get; private set; }
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else { Destroy(gameObject); }
-    }
+    protected override bool DontDestroyOnLoad => true;
 
     private void Update()
     {
