@@ -1,6 +1,7 @@
 ﻿using Constants;
 using UnityEngine;
 
+/// <summary> ゲームデータを画面に反映するクラス </summary>
 public class DataViewer : MonoBehaviour
 {
     #region 駒のPrefab一覧
@@ -32,9 +33,22 @@ public class DataViewer : MonoBehaviour
     private GameObject _kingBlackPrefab = default;
     #endregion
 
+    [Header("InputReceiver")]
+    [Tooltip("持ち時間（min）")]
+    [SerializeField]
+    private int _allottedTime = 10;
+
+    private readonly InputReceiver _inputReceiver = new();
+
     private void Start()
     {
+        _inputReceiver.Init(_allottedTime);
         InitializeBoardSetting();
+    }
+
+    private void Update()
+    {
+        _inputReceiver.Update();
     }
 
     private void InitializeBoardSetting()

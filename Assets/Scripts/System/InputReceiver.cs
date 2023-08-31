@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 
 /// <summary> Playerの入力を受け付けるクラス </summary>
-public class InputReceiver : MonoBehaviour
+public class InputReceiver
 {
-    [Tooltip("持ち時間（min）")]
-    [SerializeField]
+    /// <summary> 持ち時間（min） </summary>
     private int _allottedTime = 10;
 
     private float _timer = 0f;
     private bool _isPieceSelected = false;
 
-    private void Start()
+    public void Init(int allotted)
     {
+        _allottedTime = allotted;
         _timer = _allottedTime * 60f;
     }
 
-    private void Update()
+    public void Update()
     {
-        if (GameManager.Instance.CurrentTurn == Constants.Turn.White) { _timer -= Time.deltaTime; }
+        TimerCount();
 
         if (Input.GetKeyDown(KeyCode.Return) && !_isPieceSelected)
         {
@@ -26,6 +26,17 @@ public class InputReceiver : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Return) && _isPieceSelected)
         {
             //駒の移動先を決定
+        }
+    }
+
+    private void TimerCount()
+    {
+        if (GameManager.Instance.CurrentTurn != GameManager.Instance.PlayerColor) { return; }
+
+        _timer -= Time.deltaTime;
+        if (_timer <= 0f)
+        {
+            //タイムアップ
         }
     }
 }
