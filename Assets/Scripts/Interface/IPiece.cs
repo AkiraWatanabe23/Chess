@@ -1,9 +1,12 @@
 ﻿using System;
 
+/// <summary> 各駒の探索方向を調べる関数を持つインターフェース </summary>
 public interface IPiece
 {
-    /// <summary> どの方向に進めるか </summary>
-    public int SearchSquare(int x, int z);
+    /// <summary> どの方向に何マス進めるか </summary>
+    /// <param name="row"> 行 </param>
+    /// <param name="column"> 列 </param>
+    public int SearchSquare(int row, int column);
 
     /// <summary> 探索用のループ </summary>
     /// <param name="func"> ループを続ける条件式 </param>

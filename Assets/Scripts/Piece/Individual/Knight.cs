@@ -1,10 +1,11 @@
 ﻿using System;
+using ModelLogic;
 
 public class Knight : IPiece
 {
-    private GameSystemData _systemData = default;
+    private PieceActionConfirmation _pieceAction = default;
 
-    public void Init(GameSystemData data) { _systemData = data; }
+    public void Init(PieceActionConfirmation data) { _pieceAction = data; }
 
     public int SearchSquare(int x, int z)
     {

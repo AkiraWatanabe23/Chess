@@ -1,19 +1,20 @@
 ﻿using Constants;
+using ModelLogic;
 
 public class Rook : IPiece
 {
-    private GameSystemData _systemData = default;
+    private PieceActionConfirmation _pieceAction = default;
 
-    public void Init(GameSystemData data) { _systemData = data; }
+    public void Init(PieceActionConfirmation data) { _pieceAction = data; }
 
-    public int SearchSquare(int x, int z)
+    public int SearchSquare(int row, int column)
     {
         int movableDir = 0;
 
-        if (_systemData.TryGetCell(x + 1, z + 0)) { movableDir += Consts.Right; }
-        if (_systemData.TryGetCell(x - 1, z + 0)) { movableDir += Consts.Left; }
-        if (_systemData.TryGetCell(x + 0, z + 1)) { movableDir += Consts.Upper; }
-        if (_systemData.TryGetCell(x + 0, z - 1)) { movableDir += Consts.Lower; }
+        if (_pieceAction.TryMoveRight(row + 0, column + 1) > 0) { movableDir += Consts.Right; }
+        if (_pieceAction.TryMoveLeft(row + 0, column - 1) > 0)  { movableDir += Consts.Left; }
+        if (_pieceAction.TryMoveUp(row - 1, column + 0) > 0)    { movableDir += Consts.Upper; }
+        if (_pieceAction.TryMoveDown(row + 1, column + 0) > 0)  { movableDir += Consts.Lower; }
 
         return movableDir;
     }

@@ -44,6 +44,7 @@ namespace Constants
 
     public enum PieceType
     {
+        None,
         Pawn = 1,
         Knight,
         Bishop,

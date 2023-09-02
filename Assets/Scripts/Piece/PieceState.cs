@@ -36,6 +36,13 @@ public class PieceState : MonoBehaviour
         }
     }
 
+    /// <summary> 盤面での位置を保存（盤面の番号） </summary>
+    public void IndexSetting(int row, int column)
+    {
+        _indexRow = row;
+        _indexColumn = column;
+    }
+
     private void MoveCheck(int dir)
     {
         int row = _indexRow;
@@ -45,56 +52,56 @@ public class PieceState : MonoBehaviour
         if ((dir | Consts.Left) == Consts.Left)
         {
             var left = _movement.SearchLoop(
-                () => 0 <= column && GameManager.Instance.SystemData[row, column] == 0,
+                () => 0 <= column && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { column--; },
                 () => { column = _indexColumn; });
         }
         if ((dir | Consts.UpperLeft) == Consts.UpperLeft)
         {
             var upperLeft = _movement.SearchLoop(
-                () => 0 <= row && 0 <= column && GameManager.Instance.SystemData[row, column] == 0,
+                () => 0 <= row && 0 <= column && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { row--; column--; },
                 () => { row = _indexRow; column = _indexColumn; });
         }
         if ((dir | Consts.Upper) == Consts.Upper)
         {
             var upper = _movement.SearchLoop(
-                () => 0 <= row && GameManager.Instance.SystemData[row, column] == 0,
+                () => 0 <= row && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { row--; },
                 () => { row = _indexRow; });
         }
         if ((dir | Consts.UpperRight) == Consts.UpperRight)
         {
             var upperRight = _movement.SearchLoop(
-                () => 0 <= row && column < Consts.BoardSize && GameManager.Instance.SystemData[row, column] == 0,
+                () => 0 <= row && column < Consts.BoardSize && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { row--; column++; },
                 () => { row = _indexRow; column = _indexColumn; });
         }
         if ((dir | Consts.Right) == Consts.Right)
         {
             var right = _movement.SearchLoop(
-                () => column < Consts.BoardSize && GameManager.Instance.SystemData[row, column] == 0,
+                () => column < Consts.BoardSize && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { column++; },
                 () => { column = _indexColumn; });
         }
         if ((dir | Consts.LowerRight) == Consts.LowerRight)
         {
             var lowerRight = _movement.SearchLoop(
-                () => row < Consts.BoardSize && column < Consts.BoardSize && GameManager.Instance.SystemData[row, column] == 0,
+                () => row < Consts.BoardSize && column < Consts.BoardSize && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { row++; column++; },
                 () => { row = _indexRow; column = _indexColumn; });
         }
         if ((dir | Consts.Lower) == Consts.Lower)
         {
             var lower = _movement.SearchLoop(
-                () => row < Consts.BoardSize && GameManager.Instance.SystemData[row, column] == 0,
+                () => row < Consts.BoardSize && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { row++; },
                 () => { row = _indexRow; });
         }
         if ((dir | Consts.LowerLeft) == Consts.LowerLeft)
         {
             var lowerLeft = _movement.SearchLoop(
-                () => row < Consts.BoardSize && 0 <= column && GameManager.Instance.SystemData[row, column] == 0,
+                () => row < Consts.BoardSize && 0 <= column && GameManager.Instance.PieceAction[row, column] == 0,
                 () => { row++; column--; },
                 () => { row = _indexRow; column = _indexColumn; });
         }
