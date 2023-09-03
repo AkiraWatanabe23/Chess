@@ -9,7 +9,7 @@ public class DataPresenter : MonoBehaviour
 
     private void Start()
     {
-        if (!_dataModel) { return; }
+        if (!_dataModel || !_dataView) { return; }
 
         _dataModel.DataChanged += OnDataChanged;
     }
@@ -31,7 +31,7 @@ public class DataPresenter : MonoBehaviour
     private void OnDataChanged()
     {
         //viewの描画処理
-        _dataView.DisplayBoard();
+        _dataView.DisplayBoard(_dataModel.BoardData.Board);
     }
 
     private void OnDestroy()

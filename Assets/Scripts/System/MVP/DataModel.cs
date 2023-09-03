@@ -1,10 +1,14 @@
-﻿using ModelLogic;
+﻿using GameData;
+using ModelLogic;
 using System;
 using UnityEngine;
 
 public class DataModel : MonoBehaviour
 {
     private readonly PieceLogic _logic = new();
+    private readonly BoardData _boardData = new();
+
+    public BoardData BoardData => _boardData;
 
     public event Action DataChanged = default;
 

@@ -2,16 +2,18 @@
 
 namespace GameData
 {
+    /// <summary> 盤面のデータ </summary>
     public class BoardData
     {
         private PieceDatas _pieceDatas = new();
-        private CellData[,] _boardData = new CellData[8, 8];
+        private CellData[,] _boardData = default;
 
         public PieceDatas PieceDatas => _pieceDatas;
         public CellData[,] Board => _boardData;
 
         public void Init()
         {
+            _boardData = new CellData[Consts.BoardSize, Consts.BoardSize];
             for (int row = 0; row < Consts.BoardSize; row++)
             {
                 for (int column = 0; column < Consts.BoardSize; column++)

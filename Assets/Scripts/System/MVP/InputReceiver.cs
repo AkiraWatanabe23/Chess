@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 
 /// <summary> Playerの入力を受け付けるクラス </summary>
 public class InputReceiver : MonoBehaviour
@@ -8,32 +9,45 @@ public class InputReceiver : MonoBehaviour
 
     public bool IsPieceSelected { get => _isPieceSelected; set => _isPieceSelected = value; }
 
-    private void Start()
+    private async void Start()
     {
         TryGetComponent(out _presenter);
-
 #if UNITY_EDITOR
         if (!_presenter) { Debug.LogError("Presenterの取得に失敗しました"); }
 #endif
+
+        await ReceiveAsync();
     }
 
-    private void Update()
+    /// <summary> Playerの入力時の処理 </summary>
+    private void InputReceive()
     {
-        Receiver();
+#if UNITY_EDITOR
+        Debug.Log("get input");
+        return;
+#endif
+
+        //動かす駒を決定
+        if (!_isPieceSelected) { _presenter?.PieceSelect(); }
+        //駒の移動先を決定
+        else if (_isPieceSelected) { _presenter?.MovePosSetting(); }
     }
 
     /// <summary> Playerの入力待機 </summary>
-    public void Receiver()
+    private async Task ReceiveAsync()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !_isPieceSelected)
+#if UNITY_EDITOR
+        Debug.Log("input waiting...");
+#endif
+
+        bool isInput = false;
+        while (!isInput)
         {
-            //動かす駒を決定
-            _presenter?.PieceSelect();
+            isInput = Input.GetKeyDown(KeyCode.Return);
+            await Task.Yield();
         }
-        else if (Input.GetKeyDown(KeyCode.Return) && _isPieceSelected)
-        {
-            //駒の移動先を決定
-            _presenter?.MovePosSetting();
-        }
+        InputReceive();
+        //再度入力待ちをする
+        await ReceiveAsync();
     }
 }

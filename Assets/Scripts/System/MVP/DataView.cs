@@ -1,4 +1,5 @@
 ﻿using Constants;
+using GameData;
 using UnityEngine;
 
 /// <summary> ゲームデータを画面に反映するクラス </summary>
@@ -73,18 +74,15 @@ public class DataView : MonoBehaviour
             _ => null
         };
 
-        if (piece)
-        {
-            piece.transform.position = pos;
-            piece.transform.SetParent(_piecesParent);
-        }
+        //マスに駒がなければ処理終了
+        if (!piece) { return; }
+
+        piece.transform.position = pos;
+        piece.transform.SetParent(_piecesParent);
 
         if (piece.TryGetComponent(out PieceState pieceState)) { pieceState.IndexSetting((int)pos.z, (int)pos.x); }
     }
 
     /// <summary> 盤面の最新状態をゲーム画面に描画 </summary>
-    public void DisplayBoard()
-    {
-
-    }
+    public void DisplayBoard(CellData[,] cellData) { }
 }
