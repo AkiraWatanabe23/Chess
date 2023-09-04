@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Constants
 {
@@ -57,5 +58,19 @@ namespace Constants
     {
         White = 1,
         Black = -1
+    }
+
+    [Flags]
+    public enum SearchFlags
+    {
+        None = 0,
+        Left = 1,
+        UpperLeft = 2,
+        Upper = 4,
+        UpperRight = 8,
+        Right = 16,
+        LowerRight = 32,
+        Lower = 64,
+        LowerLeft = 128,
     }
 }

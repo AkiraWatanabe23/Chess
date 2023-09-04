@@ -79,7 +79,7 @@ namespace ModelLogic
             //指定された方向に何マス進めるか表現する値
             int count = 0;
 
-            // 方向を表現する値を 0,1,-1 にコンバージョン
+            // 方向を表現する値を 0,1,-1 に設定する
             rowDir = rowDir == SearchDirection.None ?
                 SearchDirection.None : (int)rowDir > 0 ? SearchDirection.Increment : SearchDirection.Decrement;
             columnDir = columnDir == SearchDirection.None ?
@@ -89,10 +89,7 @@ namespace ModelLogic
             row += (int)rowDir;
             column += (int)columnDir;
 
-            for (; TryGetCell(row, column); Increment(ref row, ref column))
-            {
-                count++;
-            }
+            for (; TryGetCell(row, column); Increment(ref row, ref column)) { count++; }
 
             return count;
 

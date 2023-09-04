@@ -8,9 +8,13 @@ namespace GameData
         private PieceDatas _pieceDatas = new();
         private CellData[,] _boardData = default;
 
+        /// <summary> 駒選択時に選ばれたセル </summary>
+        private CellData _selectedCell = default;
+
         public PieceDatas PieceDatas => _pieceDatas;
         public CellData[,] Board => _boardData;
 
+        /// <summary> 盤面データの初期化処理 </summary>
         public void Init()
         {
             _boardData = new CellData[Consts.BoardSize, Consts.BoardSize];
@@ -21,8 +25,18 @@ namespace GameData
                     var piece = GetPieceType(row, column);
                     var movement = GetMovementInstance(piece);
 
-                    _boardData[row, column].DataUpdate(piece, movement, row, column);
+                    _boardData[row, column].CellDataUpdate(piece, movement, row, column);
                 }
+            }
+        }
+
+        /// <summary> ターンが切り替わった時に盤面の選択状態等をリセットする </summary>
+        private void EnterNewTurn()
+        {
+            foreach (var cell in _boardData)
+            {
+                cell.CellSelected(false);
+                cell.CellMovable(false);
             }
         }
 

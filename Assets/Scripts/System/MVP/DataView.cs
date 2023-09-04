@@ -79,8 +79,6 @@ public class DataView : MonoBehaviour
 
         piece.transform.position = pos;
         piece.transform.SetParent(_piecesParent);
-
-        if (piece.TryGetComponent(out PieceState pieceState)) { pieceState.IndexSetting((int)pos.z, (int)pos.x); }
     }
 
     /// <summary> 盤面の最新状態をゲーム画面に描画 </summary>

@@ -4,6 +4,7 @@ using UnityEngine;
 /// <summary> Playerの入力を受け付けるクラス </summary>
 public class InputReceiver : MonoBehaviour
 {
+    /// <summary> 駒が選択状態にあるか </summary>
     private bool _isPieceSelected = false;
     private DataPresenter _presenter = default;
 
